@@ -161,8 +161,7 @@ async function transformResponse() {
 // ERROR HANDLING
 async function errorHandling() {
   console.log("Error Handling");
-  const res = await axios.get("https://jsonplaceholder.typicode.com/todoss");
-  showOutput(res).catch((err) => {
+  const res = await axios.get("https://jsonplaceholder.typicode.com/todoss").catch((err) => {
     if (err.response) {
       console.log(err.response.data);
       console.log(err.response.status);
@@ -203,7 +202,9 @@ axios.interceptors.request.use(
       `${config.method.toUpperCase()} request to ${
         config.url
       } at ${new Date().getTime()}`
+     
     );
+    return config;
   },
   (error) => {
     return Promise.reject(error);
